@@ -1,19 +1,25 @@
 import { useState } from "react";
 import TaskCreate from "./TaskCreate";
+import { useContext } from "react";
+import TasksContext from "../context/task"; 
 
-function TaskShow({task, onDelete,onUpdate}) {
-    
+function TaskShow({task}) {
+    const { deleteTaskById, editTaskById } = useContext(TasksContext)
+
     const [showEdit, setShowEdit] = useState(false)
 
     const handleDeleteClick = () => {
-        onDelete(task.id);
+        // onDelete(task.id);
+        deleteTaskById(task.id);
+
     }
     const handleEditClick = () => {
         setShowEdit(!showEdit);//!showEdit yerine true de yazabilirdik
     }    
     const handleSubmit = (id,updatedTitle,updatedTaskDesc) => {
         setShowEdit(false);//!showEdit yerine true de yazabilirdik
-        onUpdate(id,updatedTitle,updatedTaskDesc);
+        // onUpdate(id,updatedTitle,updatedTaskDesc);
+        editTaskById(id,updatedTitle,updatedTaskDesc);
     }   
     
     return ( 
