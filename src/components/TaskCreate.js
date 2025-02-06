@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useContext } from "react";
 import TasksContext from "../context/task"; 
 
-function TaskCreate({onCreate, task, taskFormUpdate,onUpdate}) {
-    const {} = useContext(TasksContext);
+function TaskCreate({ task, taskFormUpdate, onUpdate}) {
+    const { editTaskById, createTask } = useContext(TasksContext);
     const [title, setTitle] = useState(task ? task.title : '');
     const [taskDesc, setTaskDesc] = useState(task ? task.taskDesc : '');
 
@@ -15,7 +15,7 @@ function TaskCreate({onCreate, task, taskFormUpdate,onUpdate}) {
     }
     const handleSubmit = (event) => {
         event.preventDefault();//sayfa yenilemesini önler
-        onCreate(title,taskDesc);
+        createTask(title,taskDesc);
         setTitle('');//oluştur butonuna basınca inputu boşaltır
         setTaskDesc('');//oluştur butonuna basınca textareayı boşaltır
         console.log(title,taskDesc);
@@ -26,8 +26,10 @@ function TaskCreate({onCreate, task, taskFormUpdate,onUpdate}) {
         
         if (taskFormUpdate) {   
             onUpdate(task.id,title,taskDesc);
+            
         }else{
-            onCreate(title,taskDesc);
+            // onCreate(title,taskDesc);
+            createTask(title,taskDesc);
         }
         console.log(title,taskDesc);
     }

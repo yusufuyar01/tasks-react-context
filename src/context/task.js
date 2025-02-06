@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { useState } from "react";
 import axios from "axios";
 
-const TasksContext = createContext():
+const TasksContext = createContext();
 
 function Provider({children}){
     const [tasks, setTasks] = useState([]);
@@ -40,7 +40,7 @@ function Provider({children}){
     })
     setTasks(afterUpdatingTasks); 
   }
-  const sharedValuesAndMethods{
+  const sharedValuesAndMethods = {
     tasks,
     createTask,
     fetchTask,
@@ -53,4 +53,4 @@ function Provider({children}){
     </TasksContext.Provider>
 }
 export {Provider}
-export default TaskContext;
+export default TasksContext;
